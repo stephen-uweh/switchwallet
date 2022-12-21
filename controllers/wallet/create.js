@@ -12,7 +12,7 @@ exports.createWallet = async(req, res) => {
         currency: req.body.currency,
         networkChain: req.body.networkChain,
         publicKey: process.env.PUBLIC_API_KEY
-    }
+    };
     const response = await axios.post('https://testnet.switchwallet.io/api/v1/walletaddress/generate', data, {headers});
     if (response.status == 200){
         let resp = response.data.data
@@ -23,7 +23,7 @@ exports.createWallet = async(req, res) => {
             addressGenerationStatus: resp.addressGenerationStatus,
             addressGenerationMessage: resp.addressGenerationMessage || null,
             addressGenerationTransactionHash: respaddressGenerationTransactionHash || null
-        }
+        };
 
         let wallet = new Wallet(payload);
         await wallet.save();
